@@ -84,6 +84,26 @@ body {
 }
 
 /* Seznam pracovišť */
+/* Алфавитный заголовок */
+.alphabet-header {
+    padding: 16px 12px 8px 12px;
+    margin-top: 8px;
+}
+
+.alphabet-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #16a34a;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 .workplace-item {
     display: flex;
     align-items: center;
