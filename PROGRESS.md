@@ -207,7 +207,7 @@ Jednoduše otevřete soubor **index.html** v prohlížeči (dvojklik nebo přeta
   - В панели деталей: справа от кнопки "Назад" (`justify-between`)
   - Дизайн: крестик в круглой кнопке 40x40px с hover-эффектом
 - **Кнопка открытия** `#open-panel-button`:
-  - Круглая FAB (Floating Action Button) с гамбургер-иконкой
+  - Текстовая кнопка "☰ Seznam pracovišť" как раньше
   - Показывается только когда панель закрыта (`hidden` класс)
   - Позиция: top-left угол карты (fixed)
 - **JavaScript**:
