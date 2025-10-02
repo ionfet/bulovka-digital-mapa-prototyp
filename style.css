@@ -1,0 +1,159 @@
+/* Reset a základní styly */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+/* Levý panel */
+#panel {
+    width: 33.333%;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+#panel.is-open {
+    transform: translateX(0);
+}
+
+/* Tlačítko menu */
+#menu-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    background: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+#menu-button:hover {
+    background: #f3f4f6;
+}
+
+#menu-button.is-open {
+    left: calc(33.333% + 16px);
+}
+
+/* Kontejner mapy */
+#map-container {
+    flex: 1;
+    background: #f9fafb;
+    position: relative;
+}
+
+#mapa-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Seznam pracovišť */
+.workplace-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.workplace-item:hover {
+    background: #f3f4f6;
+}
+
+.workplace-badge {
+    background: black;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Zvýraznění budovy na mapě - JEN OBRYS (path element) */
+.is-highlighted > path,
+.is-highlighted > rect,
+path.is-highlighted,
+rect.is-highlighted {
+    stroke: #16a34a !important;
+    stroke-width: 3 !important;
+    filter: drop-shadow(0 0 10px #16a34a);
+}
+
+/* Taby */
+.tab-button {
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-button.active {
+    border-bottom-color: #16a34a;
+    color: #16a34a;
+}
+
+/* Patro chip */
+.floor-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #e5e7eb;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Responzivita pro mobil */
+@media (max-width: 768px) {
+    #panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        width: 100%;
+        height: 50%;
+        transform: translateY(100%);
+        border-radius: 16px 16px 0 0;
+    }
+    
+    #panel.is-open {
+        transform: translateY(0);
+    }
+    
+    #menu-button.is-open {
+        left: 16px;
+    }
+}
+
