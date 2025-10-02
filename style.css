@@ -32,29 +32,32 @@ body {
     min-width: 400px;
 }
 
-/* Tlačítko menu */
-#menu-button {
+/* Кнопка открытия панели */
+#open-panel-button {
     position: fixed;
     top: 16px;
     left: 16px;
     z-index: 100;
     background: white;
     border: none;
-    padding: 12px 16px;
-    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
-#menu-button:hover {
+#open-panel-button:hover {
     background: #f3f4f6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-#menu-button.is-open {
-    left: calc(33.333% + 16px);
+#open-panel-button.hidden {
+    display: none;
 }
 
 /* Kontejner mapy */
@@ -67,6 +70,19 @@ body {
 #mapa-svg {
     width: 100%;
     height: 100%;
+}
+
+/* Detail budovy */
+#building-detail {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+}
+
+#building-detail.hidden {
+    display: none;
 }
 
 /* Seznam pracovišť */
@@ -156,10 +172,6 @@ rect.is-highlighted {
     #panel.is-open {
         height: 60%;
         width: 100%;
-    }
-    
-    #menu-button.is-open {
-        left: 16px;
     }
     
     #map-container {
