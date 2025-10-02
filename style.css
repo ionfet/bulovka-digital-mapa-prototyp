@@ -62,6 +62,7 @@ body {
     flex: 1;
     background: #f9fafb;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 #mapa-svg {

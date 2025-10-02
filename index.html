@@ -17,7 +17,7 @@
 <body>
     <div id="app">
         <!-- Левый панель -->
-        <div id="panel" class="is-open">
+        <div id="panel">
             <!-- Header с поиском и кнопкой закрытия -->
             <div class="p-4 border-b border-gray-200">
                 <div class="flex items-center gap-3">
@@ -119,7 +119,7 @@
         <!-- Контейнер карты -->
         <div id="map-container">
             <!-- Кнопка открытия панели -->
-            <button id="open-panel-button" class="hidden">☰ Seznam pracovišť</button>
+            <button id="open-panel-button">☰ Seznam pracovišť</button>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="mapa-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1516.535 715.983">
   <defs>
@@ -1639,70 +1639,72 @@
             const panel = document.getElementById('panel');
             const openButton = document.getElementById('open-panel-button');
             const wasClosed = !panel.classList.contains('is-open');
+            
+            // Функция для переключения содержимого панели
+            const switchContent = () => {
+                // Skryj seznam pracovišť a zobraz detail budovy
+                document.getElementById('workplace-list').style.display = 'none';
+                document.querySelector('#panel > div:first-child').style.display = 'none';
+                document.getElementById('building-detail').classList.remove('hidden');
+                
+                document.getElementById('building-title').textContent = buildingData.nazev;
+                document.getElementById('building-address').textContent = buildingData.adresa;
+                document.getElementById('building-transport').textContent = `Linky: ${buildingData.mhd.linky.join(', ')}`;
+                
+                // Отделения в здании
+                const oddeleniContainer = document.getElementById('tab-oddeleni');
+                const oddeleniList = pracoviste.filter(p => p.budova === buildingData.cislo);
+                
+                oddeleniContainer.innerHTML = oddeleniList.map(odd => `
+                    <div class="flex items-center py-3 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
+                        <div class="flex-1">
+                            <div class="text-sm text-gray-500 mb-1">
+                                <span class="floor-chip">1. patro</span>
+                            </div>
+                            <div class="font-semibold">${odd.nazev}</div>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                `).join('');
+                
+                // POI
+                const poiContainer = document.getElementById('tab-poi');
+                poiContainer.innerHTML = buildingData.poi.map(poi => `
+                    <div class="flex items-center py-3 border-b border-gray-200">
+                        <div class="w-10 h-10 mr-3 flex items-center justify-center">
+                            ${poi.typ === 'lekarna' ? 
+                                '<svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>' : 
+                                '<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold">ATM</div>'}
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-semibold">${poi.nazev}</div>
+                            <div class="text-sm text-gray-500">${poi.patro}. patro</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Навигация
+                document.getElementById('navigate-button').onclick = () => {
+                    const url = `https://www.google.com/maps/dir/?api=1&destination=${buildingData.gps.lat},${buildingData.gps.lng}`;
+                    window.open(url, '_blank');
+                };
+                
+                highlightBudova(budovaId);
+            };
+            
+            // Если панель была закрыта, ждем окончания анимации перед переключением содержимого
             if (wasClosed) {
                 panel.classList.add('is-open');
                 openButton.classList.add('hidden');
-                
-                // Přepočítat velikost mapy po otevření panelu
-                setTimeout(() => {
-                    if (panZoomInstance) {
-                        panZoomInstance.resize();
-                        panZoomInstance.fit();
-                        panZoomInstance.center();
-                    }
-                }, 350);
+                smoothResizeMap();
+                // Ждем окончания анимации (300ms) перед переключением содержимого
+                setTimeout(switchContent, 300);
+            } else {
+                // Если панель уже открыта, переключаем содержимое сразу
+                switchContent();
             }
-            
-            // Skryj seznam pracovišť a zobraz detail budovy
-            document.getElementById('workplace-list').style.display = 'none';
-            document.querySelector('#panel > div:first-child').style.display = 'none';
-            document.getElementById('building-detail').classList.remove('hidden');
-            
-            document.getElementById('building-title').textContent = buildingData.nazev;
-            document.getElementById('building-address').textContent = buildingData.adresa;
-            document.getElementById('building-transport').textContent = `Linky: ${buildingData.mhd.linky.join(', ')}`;
-            
-            // Отделения в здании
-            const oddeleniContainer = document.getElementById('tab-oddeleni');
-            const oddeleniList = pracoviste.filter(p => p.budova === buildingData.cislo);
-            
-            oddeleniContainer.innerHTML = oddeleniList.map(odd => `
-                <div class="flex items-center py-3 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
-                    <div class="flex-1">
-                        <div class="text-sm text-gray-500 mb-1">
-                            <span class="floor-chip">1. patro</span>
-                        </div>
-                        <div class="font-semibold">${odd.nazev}</div>
-                    </div>
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </div>
-            `).join('');
-            
-            // POI
-            const poiContainer = document.getElementById('tab-poi');
-            poiContainer.innerHTML = buildingData.poi.map(poi => `
-                <div class="flex items-center py-3 border-b border-gray-200">
-                    <div class="w-10 h-10 mr-3 flex items-center justify-center">
-                        ${poi.typ === 'lekarna' ? 
-                            '<svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>' : 
-                            '<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold">ATM</div>'}
-                    </div>
-                    <div class="flex-1">
-                        <div class="font-semibold">${poi.nazev}</div>
-                        <div class="text-sm text-gray-500">${poi.patro}. patro</div>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Навигация
-            document.getElementById('navigate-button').onclick = () => {
-                const url = `https://www.google.com/maps/dir/?api=1&destination=${buildingData.gps.lat},${buildingData.gps.lng}`;
-                window.open(url, '_blank');
-            };
-            
-            highlightBudova(budovaId);
         }
         
         // Закрыть детали здания
@@ -1716,6 +1718,31 @@
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         
         let panZoomInstance = null;
+        
+        // Функция для плавного изменения размера карты
+        function smoothResizeMap() {
+            if (!panZoomInstance) return;
+            
+            let startTime = null;
+            const duration = 300; // Длительность анимации в мс
+            
+            function animate(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                
+                // Обновляем размер карты
+                panZoomInstance.resize();
+                panZoomInstance.fit();
+                panZoomInstance.center();
+                
+                // Продолжаем анимацию, пока не истечет время
+                if (elapsed < duration) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
         
         document.addEventListener('DOMContentLoaded', () => {
             // Отрисовка начального списка
@@ -1738,30 +1765,14 @@
             openButton.addEventListener('click', () => {
                 panel.classList.add('is-open');
                 openButton.classList.add('hidden');
-                
-                // Přepočítat velikost mapy po animaci (300ms)
-                setTimeout(() => {
-                    if (panZoomInstance) {
-                        panZoomInstance.resize();
-                        panZoomInstance.fit();
-                        panZoomInstance.center();
-                    }
-                }, 350);
+                smoothResizeMap();
             });
             
             // Закрыть панель (из списка рабочих мест)
             closePanelButton.addEventListener('click', () => {
                 panel.classList.remove('is-open');
                 openButton.classList.remove('hidden');
-                
-                // Přepočítat velikost mapy po animaci (300ms)
-                setTimeout(() => {
-                    if (panZoomInstance) {
-                        panZoomInstance.resize();
-                        panZoomInstance.fit();
-                        panZoomInstance.center();
-                    }
-                }, 350);
+                smoothResizeMap();
             });
             
             // Закрыть панель (из деталей здания)
@@ -1769,15 +1780,7 @@
                 panel.classList.remove('is-open');
                 openButton.classList.remove('hidden');
                 closeBuildingDetail();
-                
-                // Přepočítat velikost mapy po animaci (300ms)
-                setTimeout(() => {
-                    if (panZoomInstance) {
-                        panZoomInstance.resize();
-                        panZoomInstance.fit();
-                        panZoomInstance.center();
-                    }
-                }, 350);
+                smoothResizeMap();
             });
             
             // Назад
