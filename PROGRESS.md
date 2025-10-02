@@ -39,6 +39,10 @@ Jednoduše otevřete soubor **index.html** v prohlížeči (dvojklik nebo přeta
 5. **Opravena špatná ID v SVG**:
    - `b-15-2` → `b-16` (budova 16 měla špatné ID)
    - `b-019` → `b-19` (budova 19 měla nulu navíc)
+6. **Responzivní mapa** - mapa se automaticky přizpůsobuje při otevření/zavření panelu:
+   - Panel zavřený: mapa zabírá 100% šířky
+   - Panel otevřený: mapa zabírá zbývajících 66.666% (2/3 šířky)
+   - svg-pan-zoom se automaticky přepočítá a vycentruje
 
 ## 🐛 Známé problémy / Limity MVP
 1. **GPS souřadnice** - všechny budovy mají stejné mockup GPS (50.1109, 14.4618)

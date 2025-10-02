@@ -1620,10 +1620,20 @@
             // OTEVŘI PANEL, pokud není otevřený
             const panel = document.getElementById('panel');
             const menuButton = document.getElementById('menu-button');
-            if (!panel.classList.contains('is-open')) {
+            const wasClosed = !panel.classList.contains('is-open');
+            if (wasClosed) {
                 panel.classList.add('is-open');
                 menuButton.classList.add('is-open');
                 menuButton.textContent = '✕ Zavřít';
+                
+                // Přepočítat velikost mapy po otevření panelu
+                setTimeout(() => {
+                    if (panZoomInstance) {
+                        panZoomInstance.resize();
+                        panZoomInstance.fit();
+                        panZoomInstance.center();
+                    }
+                }, 350);
             }
             
             // Skryj seznam pracovišť a zobraz detail budovy
@@ -1711,6 +1721,15 @@
                 panel.classList.toggle('is-open');
                 menuButton.classList.toggle('is-open');
                 menuButton.textContent = panel.classList.contains('is-open') ? '✕ Zavřít' : '☰ Seznam pracovišť';
+                
+                // Přepočítat velikost mapy po animaci (300ms)
+                setTimeout(() => {
+                    if (panZoomInstance) {
+                        panZoomInstance.resize();
+                        panZoomInstance.fit();
+                        panZoomInstance.center();
+                    }
+                }, 350);
             });
             
             // Назад
