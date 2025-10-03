@@ -1717,6 +1717,11 @@
                 };
                 
                 highlightBudova(budovaId);
+                
+                // ЗУМИРОВАТЬ на здание с небольшой задержкой, чтобы подсветка успела примениться
+                setTimeout(() => {
+                    zoomToBuilding(budovaId);
+                }, 50);
             };
             
             // Если панель была закрыта, ждем окончания анимации перед переключением содержимого
@@ -1745,9 +1750,10 @@
         let panZoomInstance = null;
         
         // Функция для плавного изменения размера карты
-        function smoothResizeMap() {
+        function smoothResizeMap(options = {}) {
             if (!panZoomInstance) return;
             
+            const { preserveView = true } = options;
             let startTime = null;
             const duration = 300; // Длительность анимации в мс
             
@@ -1757,8 +1763,12 @@
                 
                 // Обновляем размер карты
                 panZoomInstance.resize();
-                panZoomInstance.fit();
-                panZoomInstance.center();
+                panZoomInstance.updateBBox();
+
+                if (!preserveView) {
+                    panZoomInstance.fit();
+                    panZoomInstance.center();
+                }
                 
                 // Продолжаем анимацию, пока не истечет время
                 if (elapsed < duration) {
@@ -1767,6 +1777,86 @@
             }
             
             requestAnimationFrame(animate);
+        }
+        
+        // Функция для зума на конкретное здание с корректным центрированием
+        function zoomToBuilding(budovaId) {
+            if (!panZoomInstance) return;
+
+            const svg = document.getElementById('mapa-svg');
+            if (!svg) return;
+
+            const budova = svg.querySelector(`#${budovaId}`);
+            if (!budova) return;
+
+            // Bounding box здания в координатах viewBox
+            const bbox = budova.getBBox();
+            const buildingCenterX = bbox.x + bbox.width / 2;
+            const buildingCenterY = bbox.y + bbox.height / 2;
+
+            const sizes = panZoomInstance.getSizes();
+            const currentZoom = panZoomInstance.getZoom();
+            const currentRealZoom = sizes.realZoom; // px на единицу viewBox при текущем zoom
+            const baseRealZoom = currentRealZoom / currentZoom; // px на единицу при zoom = 1
+
+            // Фактические размеры контейнера карты на экране (учитывают открытую панель)
+            const mapContainer = document.getElementById('map-container');
+            const { width: viewportWidth, height: viewportHeight } = mapContainer.getBoundingClientRect();
+
+            // Желательный реальный zoom (px на единицу viewBox)
+            const padding = 1.5; // 50% отступа вокруг здания
+            const desiredRealZoomX = viewportWidth / (bbox.width * padding);
+            const desiredRealZoomY = viewportHeight / (bbox.height * padding);
+            const desiredRealZoom = Math.min(desiredRealZoomX, desiredRealZoomY);
+
+            // Конвертируем в zoom svg-pan-zoom и ограничиваем диапазон
+            const minZoom = panZoomInstance.getMinZoom ? panZoomInstance.getMinZoom() : 0.5;
+            const maxZoom = panZoomInstance.getMaxZoom ? panZoomInstance.getMaxZoom() : 8;
+            const unclampedTargetZoom = desiredRealZoom / baseRealZoom;
+            const targetZoom = Math.max(minZoom, Math.min(maxZoom, unclampedTargetZoom));
+
+            const panel = document.getElementById('panel');
+            const isPanelOpen = panel.classList.contains('is-open');
+            
+            // Центрируем здание в видимой части карты (легкий сдвиг вправо на десктопе при открытой панели)
+            let viewportCenterX = viewportWidth / 2;
+            if (isPanelOpen && window.innerWidth >= 1024) {
+                viewportCenterX = viewportWidth * 0.6;
+            }
+            const viewportCenterY = viewportHeight / 2;
+
+            const startZoom = currentZoom;
+            const startPan = panZoomInstance.getPan();
+            const startTime = Date.now();
+            const duration = 600;
+
+            function step() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // easeInOutCubic
+                const eased = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                const currentAnimatedZoom = startZoom + (targetZoom - startZoom) * eased;
+                const currentRealZoomStep = baseRealZoom * currentAnimatedZoom;
+                const desiredPanX = viewportCenterX - buildingCenterX * currentRealZoomStep;
+                const desiredPanY = viewportCenterY - buildingCenterY * currentRealZoomStep;
+
+                const currentPanX = startPan.x + (desiredPanX - startPan.x) * eased;
+                const currentPanY = startPan.y + (desiredPanY - startPan.y) * eased;
+
+                panZoomInstance.pauseControlIcons && panZoomInstance.pauseControlIcons();
+                panZoomInstance.zoom(currentAnimatedZoom);
+                panZoomInstance.pan({ x: currentPanX, y: currentPanY });
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
         }
         
         document.addEventListener('DOMContentLoaded', () => {
@@ -1790,14 +1880,14 @@
             openButton.addEventListener('click', () => {
                 panel.classList.add('is-open');
                 openButton.classList.add('hidden');
-                smoothResizeMap();
+                smoothResizeMap({ preserveView: false });
             });
             
             // Закрыть панель (из списка рабочих мест)
             closePanelButton.addEventListener('click', () => {
                 panel.classList.remove('is-open');
                 openButton.classList.remove('hidden');
-                smoothResizeMap();
+                smoothResizeMap({ preserveView: false });
             });
             
             // Закрыть панель (из деталей здания)
@@ -1805,7 +1895,7 @@
                 panel.classList.remove('is-open');
                 openButton.classList.remove('hidden');
                 closeBuildingDetail();
-                smoothResizeMap();
+                smoothResizeMap({ preserveView: false });
             });
             
             // Назад
