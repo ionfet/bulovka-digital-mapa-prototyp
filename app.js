@@ -1,66 +1,69 @@
 // ===== ДАННЫЕ =====
 
-// Рабочие места из buildings.md
+// Рабочие места из buildings.md (обновлено 3 октября 2025)
 const pracoviste = [
+    { nazev: "Anesteziologie a intenzivní medicína", nazevEN: "Anaesthesiology, Intensive and Emergency Medicine", budova: "13" },
     { nazev: "Biochemie a imunologie", nazevEN: "Biochemistry and Immunology", budova: "8" },
+    { nazev: "Centrum porodní asistence", nazevEN: "Midwifery Center", budova: "15" },
+    { nazev: "Centrum péče o ženu a dítě s podezřením na vrozenou vývojovou vadu", nazevEN: "Center for Care of Women and Children with Suspected Congenital Defects", budova: "5" },
     { nazev: "Centrální laboratoře", nazevEN: "Central Laboratories", budova: "8" },
     { nazev: "Centrální sterilizace", nazevEN: "Central Sterilization", budova: "13" },
-    { nazev: "Centrum porodní asistence", nazevEN: "Birth Assistance Center", budova: "15" },
-    { nazev: "Centrum péče o ženu a dítě s podezřením na vrozenou vývojovou vadu", nazevEN: "Center for Women and Children with Suspected Congenital Defects", budova: "5" },
-    { nazev: "Chirurgická klinika", nazevEN: "Surgical Clinic", budova: "5" },
-    { nazev: "CT", nazevEN: "CT Scan", budova: "13" },
-    { nazev: "Dermatovenerologická klinika", nazevEN: "Dermatology and Venereology Clinic", budova: "9" },
+    { nazev: "Cizinecké oddělení", nazevEN: "Foreigners' Department", budova: "1" },
+    { nazev: "Chirurgie", nazevEN: "Surgery", budova: "5" },
+    { nazev: "Dermatovenerologie", nazevEN: "Dermatovenerology", budova: "9" },
     { nazev: "Dětská chirurgie a traumatologie", nazevEN: "Pediatric Surgery and Traumatology", budova: "5" },
+    { nazev: "Funkční diagnostika a Centrum preventivní péče", nazevEN: "Functional Diagnostics and Preventive Care Centre", budova: "1" },
+    { nazev: "Gastroenterologické oddělení", nazevEN: "Gastrointestinal Department", budova: "10" },
     { nazev: "Gastrointestinální onkologie", nazevEN: "Gastrointestinal Oncology", budova: "10" },
-    { nazev: "Gynekologicko-porodnická klinika", nazevEN: "Gynecology and Obstetrics Clinic", budova: "15" },
-    { nazev: "Hematologie a transfuze", nazevEN: "Hematology and Transfusion", budova: "8" },
+    { nazev: "Gynekologie", nazevEN: "Gynecology", budova: "15" },
     { nazev: "HIV centrum", nazevEN: "HIV Center", budova: "7" },
-    { nazev: "Interní klinika FNB a 3. LF UK", nazevEN: "Internal Medicine Clinic", budova: "10" },
-    { nazev: "Klinika anesteziologie, intenzivní a urgentní medicíny", nazevEN: "Anesthesiology, Intensive and Emergency Medicine Clinic", budova: "13" },
-    { nazev: "Klinika infekčních nemocí", nazevEN: "Infectious Diseases Clinic", budova: "7" },
-    { nazev: "Klinika plastické chirurgie", nazevEN: "Plastic Surgery Clinic", budova: "15" },
-    { nazev: "Klinika pneumologie", nazevEN: "Pneumology Clinic", budova: "4" },
+    { nazev: "Hematologie a transfuze", nazevEN: "Hematology and Transfusion", budova: "8" },
+    { nazev: "Infekční nemoci", nazevEN: "Infectious Diseases", budova: "7" },
+    { nazev: "Interní klinika FNB a 3. LF UK", nazevEN: "Internal Medicine Clinic FNB and 3rd FM CU", budova: "10" },
+    { nazev: "Intervenční radiologie", nazevEN: "Interventional Radiology", budova: "3" },
     { nazev: "Klinická farmacie", nazevEN: "Clinical Pharmacy", budova: "8" },
-    { nazev: "Komplexní centrum pro ortopedickou léčbu nádorů pohybového aparátu", nazevEN: "Complex Center for Orthopedic Treatment of Musculoskeletal Tumors", budova: "13" },
-    { nazev: "Komplexní onkologické centrum", nazevEN: "Complex Oncology Center", budova: "6" },
-    { nazev: "Lékárna", nazevEN: "Pharmacy", budova: "1" },
-    { nazev: "Léčba bolesti", nazevEN: "Pain Treatment", budova: "9" },
-    { nazev: "Magnetická rezonance (MRi)", nazevEN: "Magnetic Resonance (MRI)", budova: "13" },
-    { nazev: "Mamodiagnostické centrum", nazevEN: "Mammography Diagnostic Center", budova: "16" },
+    { nazev: "Komplexní centrum pro ortopedickou léčbu nádorů pohybového aparátu", nazevEN: "Comprehensive Centre for Orthopaedic Treatment of Musculoskeletal Tumours", budova: "13" },
+    { nazev: "Komplexní onkologické centrum", nazevEN: "Comprehensive Oncology Centre", budova: "6" },
+    { nazev: "Lékárna pro veřejnost I", nazevEN: "Public Pharmacy I", budova: "1" },
+    { nazev: "Lékárna pro veřejnost II", nazevEN: "Public Pharmacy II", budova: "6" },
+    { nazev: "Léčba bolesti", nazevEN: "Pain Treatment Center", budova: "9" },
+    { nazev: "Magnetická rezonance MRI 1", nazevEN: "Magnetic Resonance Imaging – MRI 1", budova: "13" },
+    { nazev: "Magnetická rezonance MRI 2", nazevEN: "Magnetic Resonance Imaging – MRI 2", budova: "16" },
+    { nazev: "Mamodiagnostické centrum", nazevEN: "Mammography Centre", budova: "16" },
     { nazev: "Mikrobiologie", nazevEN: "Microbiology", budova: "8" },
-    { nazev: "Neonatologické oddělení", nazevEN: "Neonatology Department", budova: "15" },
-    { nazev: "Neurologické oddělení", nazevEN: "Neurology Department", budova: "3" },
-    { nazev: "NRL parazitologie", nazevEN: "NRL Parasitology", budova: "8" },
-    { nazev: "Nutriční terapeuté", nazevEN: "Nutritional Therapists", budova: "18" },
-    { nazev: "Odběrová pracoviště", nazevEN: "Sampling Sites", budova: "8" },
-    { nazev: "Odbor právní a veřejných zakázek", nazevEN: "Legal and Public Procurement Department", budova: "1" },
-    { nazev: "Oddělení controllingu a analytiky", nazevEN: "Controlling and Analytics Department", budova: "14" },
-    { nazev: "Oddělení funkční diagnostiky a Centrum preventivní péče", nazevEN: "Functional Diagnostics and Preventive Care Center", budova: "1" },
-    { nazev: "Oddělení intervenční radiologie", nazevEN: "Interventional Radiology Department", budova: "3" },
-    { nazev: "Oddělení klinické psychologie", nazevEN: "Clinical Psychology Department", budova: "3" },
-    { nazev: "Oddělení následné péče", nazevEN: "Follow-up Care Department", budova: "9" },
-    { nazev: "Oddělení vzdělávání", nazevEN: "Education Department", budova: "10" },
-    { nazev: "Oční oddělení", nazevEN: "Ophthalmology Department", budova: "3" },
-    { nazev: "Ortopedická klinika", nazevEN: "Orthopedic Clinic", budova: "13" },
-    { nazev: "Otorinolaryngologické oddělení", nazevEN: "Otorhinolaryngology Department", budova: "3" },
-    { nazev: "Patologicko-anatomické oddělení", nazevEN: "Pathological Anatomy Department", budova: "17" },
-    { nazev: "Pediatrické oddělení", nazevEN: "Pediatric Department", budova: "15" },
-    { nazev: "Pohotovost – lékařská služba první pomoci", nazevEN: "Emergency - First Aid Medical Service", budova: "2" },
+    { nazev: "Neonatologie", nazevEN: "Neonatology Department", budova: "15" },
+    { nazev: "Neurologie", nazevEN: "Neurology Department", budova: "3" },
+    { nazev: "Nutriční terapeuti", nazevEN: "Nutritional Therapists", budova: "18" },
+    { nazev: "Národní jednotka dohledu na TBC", nazevEN: "National Tuberculosis Surveillance Unit", budova: "20" },
+    { nazev: "Následná péče – rehabilitační oddělení", nazevEN: "Follow-up Care – Rehabilitation Department", budova: "9" },
+    { nazev: "ORL – ušní, nosní a krční", nazevEN: "Otorhinolaryngology", budova: "3" },
+    { nazev: "Odběrové pracoviště", nazevEN: "Central Sampling Department", budova: "8" },
+    { nazev: "Onkologie", nazevEN: "Oncology Center", budova: "15" },
+    { nazev: "Ortopedie", nazevEN: "Orthopedic Clinic", budova: "13" },
+    { nazev: "Oční", nazevEN: "Ophthalmology Department", budova: "3" },
+    { nazev: "Patologie", nazevEN: "Pathology Department", budova: "17" },
+    { nazev: "Parazitologie – NRL", nazevEN: "Parasitology – NRL", budova: "8" },
+    { nazev: "Pediatrie (Dětské oddělení)", nazevEN: "Pediatric Department", budova: "15" },
+    { nazev: "Plastická chirurgie", nazevEN: "Plastic Surgery", budova: "15" },
+    { nazev: "Plicní – Pneumologie", nazevEN: "Pneumology", budova: "4" },
+    { nazev: "Pohotovost", nazevEN: "Emergency Room", budova: "2" },
     { nazev: "Porodnice", nazevEN: "Maternity Ward", budova: "15" },
-    { nazev: "Pracovně lékařské služby", nazevEN: "Occupational Health Services", budova: "1" },
+    { nazev: "Pracovní lékařské služby", nazevEN: "Occupational Health Services", budova: "1" },
+    { nazev: "Protialkoholní záchytná stanice", nazevEN: "Alcohol Detoxification Station", budova: "19" },
+    { nazev: "Protonové centrum", nazevEN: "Proton Therapy Center", budova: "42" },
+    { nazev: "Psychologie", nazevEN: "Psychology", budova: "3" },
     { nazev: "Radiodiagnostické oddělení", nazevEN: "Radiodiagnostic Department", budova: "1" },
     { nazev: "Radiofyzika", nazevEN: "Radiophysics", budova: "16" },
     { nazev: "Rehabilitace", nazevEN: "Rehabilitation", budova: "9" },
     { nazev: "Rentgen (RTG)", nazevEN: "X-ray (RTG)", budova: "1" },
-    { nazev: "Slatinné lázně Toušeň", nazevEN: "Toušeň Mud Spa", budova: "1" },
     { nazev: "Sociálně zdravotní oddělení", nazevEN: "Social and Health Department", budova: "9" },
     { nazev: "Sonografie", nazevEN: "Sonography", budova: "1" },
-    { nazev: "Středisko vědeckých informací", nazevEN: "Scientific Information Center", budova: "2" },
+    { nazev: "Soudní lékařství", nazevEN: "Forensic Medicine", budova: "17" },
     { nazev: "Toxikologie", nazevEN: "Toxicology", budova: "17" },
     { nazev: "Urgentní příjem", nazevEN: "Emergency Department", budova: "13" },
-    { nazev: "Urologické oddělení", nazevEN: "Urology Department", budova: "3" },
-    { nazev: "Ústav radiační onkologie", nazevEN: "Institute of Radiation Oncology", budova: "6" },
-    { nazev: "Ústav soudního lékařství", nazevEN: "Institute of Forensic Medicine", budova: "17" }
+    { nazev: "Urologie", nazevEN: "Urology Department", budova: "3" },
+    { nazev: "Ústav gastrointestinální onkologie", nazevEN: "Institute of Gastrointestinal Oncology", budova: "10" },
+    { nazev: "Virologie", nazevEN: "Virology", budova: "8" }
 ];
 
 // Синонимы для поиска
@@ -180,7 +183,7 @@ function renderWorkplaceList(items) {
             const div = document.createElement('div');
             div.className = 'workplace-item';
             div.innerHTML = `
-                <div class="flex-1">
+                <div class="flex-1" style="margin-right: 20px;">
                     <div class="font-semibold text-gray-900">${item.nazev}</div>
                     <div class="text-sm text-gray-500">${item.nazevEN}</div>
                 </div>
@@ -267,9 +270,9 @@ function showBuildingDetail(budovaId) {
         const oddeleniList = pracoviste.filter(p => p.budova === buildingData.cislo);
         
         oddeleniContainer.innerHTML = oddeleniList.map(odd => `
-            <div class="flex items-center py-3 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
+            <div class="flex items-center py-5 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
                 <div class="flex-1">
-                    <div class="text-sm text-gray-500 mb-1">
+                    <div class="text-sm text-gray-500 mb-2">
                         <span class="floor-chip">1. patro</span>
                     </div>
                     <div class="font-semibold">${odd.nazev}</div>

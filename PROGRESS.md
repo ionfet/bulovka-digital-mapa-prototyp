@@ -82,13 +82,22 @@ Jednoduše otevřete soubor **index.html** v prohlížeči (dvojklik nebo přeta
    - Улучшена структура проекта и читаемость кода
    - Упрощено обслуживание и отладка
    - Файл `index.html` уменьшен с 1950 до 1416 строк
+13. **Обновление списка отделений** (3 октября 2025):
+   - Список отделений полностью обновлен в соответствии с актуальным `buildings.md`
+   - Добавлено 62 отделения с точными чешскими и английскими названиями
+   - Обновлены названия: вместо "Klinika anesteziologie..." теперь "Anesteziologie a intenzivní medicína"
+   - Добавлены новые отделения: "Cizinecké oddělení", "Národní jednotka dohledu na TBC", "Protialkoholní záchytná stanice", "Protonové centrum", "Gastroenterologické oddělení", "Ústav gastrointestinální onkologie"
+   - Разделены "Lékárna pro veřejnost I" и "Lékárna pro veřejnost II"
+   - Разделены "Magnetická rezonance MRI 1" и "MRI 2"
+   - Все английские переводы взяты из официального списка buildings.md
 
 ## 🐛 Známé problémy / Limity MVP
 1. **GPS souřadnice** - všechny budovy mají stejné mockup GPS (50.1109, 14.4618)
 2. **MHD data** - zastávka a linky jsou mockup (Bulovka, 150m, linky 136/140/201)
 3. **Patra oddělení** - zatím pevně nastaveno na "1. patro" pro všechna oddělení
 4. **Fotky budov** - zobrazuje se placeholder (šedý obdélník)
-5. **Některá pracoviště** nemají přiřazeno číslo budovy (v buildings.md "Neuvedeno")
+5. **Některá pracoviště chybí** - 2 oddělení z buildings.md ("Očkovací centrum", "Paliativní péče") nemají přiřazeno číslo budovy a nejsou v aplikaci
+6. **Některá oddělení jsou ve více budovách** - "Rehabilitace" je v budovách 9, 1, 13, 7 - v aplikaci je uvedena jen v budově 9
 
 ## ✅ CO FUNGUJE:
 - ✅ Vyhledávání s normalizací a synonymy
