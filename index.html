@@ -1821,14 +1821,15 @@
             // Центрируем здание в видимой части карты (легкий сдвиг вправо на десктопе при открытой панели)
             let viewportCenterX = viewportWidth / 2;
             if (isPanelOpen && window.innerWidth >= 1024) {
-                viewportCenterX = viewportWidth * 0.6;
+                // НАСТРОЙКА ЦЕНТРА: 0.5 = по центру, 0.6 = чуть правее, 0.55 = немного правее
+                viewportCenterX = viewportWidth * 0.55;
             }
             const viewportCenterY = viewportHeight / 2;
 
             const startZoom = currentZoom;
-            const startPan = panZoomInstance.getPan();
             const startTime = Date.now();
-            const duration = 600;
+            // НАСТРОЙКА СКОРОСТИ: в миллисекундах (600 = быстро, 1000 = медленно, 1500 = очень медленно)
+            const duration = 1000;
 
             function step() {
                 const elapsed = Date.now() - startTime;
@@ -1839,17 +1840,18 @@
                     ? 4 * progress * progress * progress
                     : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
+                // Интерполируем только zoom
                 const currentAnimatedZoom = startZoom + (targetZoom - startZoom) * eased;
-                const currentRealZoomStep = baseRealZoom * currentAnimatedZoom;
-                const desiredPanX = viewportCenterX - buildingCenterX * currentRealZoomStep;
-                const desiredPanY = viewportCenterY - buildingCenterY * currentRealZoomStep;
+                
+                // Пересчитываем правильный pan для текущего zoom
+                // чтобы здание всегда было в центре viewport
+                const currentRealZoom = baseRealZoom * currentAnimatedZoom;
+                const correctPanX = viewportCenterX - buildingCenterX * currentRealZoom;
+                const correctPanY = viewportCenterY - buildingCenterY * currentRealZoom;
 
-                const currentPanX = startPan.x + (desiredPanX - startPan.x) * eased;
-                const currentPanY = startPan.y + (desiredPanY - startPan.y) * eased;
-
-                panZoomInstance.pauseControlIcons && panZoomInstance.pauseControlIcons();
+                // Применяем zoom и правильный pan для этого zoom
                 panZoomInstance.zoom(currentAnimatedZoom);
-                panZoomInstance.pan({ x: currentPanX, y: currentPanY });
+                panZoomInstance.pan({ x: correctPanX, y: correctPanY });
 
                 if (progress < 1) {
                     requestAnimationFrame(step);
