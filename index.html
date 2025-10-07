@@ -75,8 +75,37 @@
                         Foto budovy
                     </div>
                     
+                    <!-- Легенда входов -->
+                    <div class="p-4 border-b border-gray-200">
+                      <div class="text-xs font-semibold text-gray-500 uppercase mb-3">Legenda</div>
+                      <div class="flex items-center gap-6">
+                          <!-- Bezbarierový vstup -->
+                          <div class="flex items-center gap-2">
+                              <div id="entrance-accessible-icon" class="flex-shrink-0">
+                                <svg width="25" height="25" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M40.3232 80.7195C18.2747 80.7195 0.323242 62.7681 0.323242 40.7191C0.323242 18.6701 18.2747 0.718262 40.3232 0.718262C62.3717 0.718262 80.3232 18.6701 80.3232 40.7191C80.3232 62.7681 62.3717 80.7195 40.3232 80.7195Z" fill="#13489E"/>
+                                  <path d="M43.8959 62.8386H37.6426V27.4741L22.4585 42.6585L18.0381 38.238L40.7513 15.4883L63.5004 38.238L59.08 42.6585L43.8959 27.4741V62.8386Z" fill="white"/>
+                                  </svg>                                    
+                              </div>
+                              <span class="text-xs text-gray-600">Bezbarierový vstup</span>
+                          </div>
+                          
+                          <!-- Běžný vstup -->
+                          <div class="flex items-center gap-2">
+                              <div id="entrance-regular-icon" class="flex-shrink-0">
+                                <svg width="25" height="25" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M40.2168 2.32275C61.3936 2.32364 78.6121 19.5437 78.6123 40.7212C78.6123 61.8988 61.3937 79.1178 40.2168 79.1187C19.0407 79.1169 1.82227 61.8982 1.82227 40.7212C1.82236 19.5442 19.0408 2.32454 40.2168 2.32275Z" stroke="black" stroke-width="3.19986"/>
+                                  <path d="M43.3798 63.0919H37.0558V27.3281L21.7003 42.6839L17.2295 38.2135L40.1996 15.2065L63.2057 38.2135L58.7353 42.6839L43.3798 27.3281V63.0919Z" fill="black"/>
+                                  </svg>                                    
+                              </div>
+                              <span class="text-xs text-gray-600">Vstup</span>
+                          </div>
+                      </div>
+                  </div>
+
+
                     <!-- Информация о транспорте -->
-                    <div class="p-4 space-y-2 border-b border-gray-200">
+                    <div class="p-4 space-y-2">
                         <div class="flex items-center text-sm text-gray-600">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -91,6 +120,7 @@
                             <span id="building-transport">Linky: 136, 140, 201</span>
                         </div>
                     </div>
+
                     
                     <!-- Кнопка навигации -->
                     <div class="p-4 border-b border-gray-200">

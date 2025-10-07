@@ -70,7 +70,6 @@ const pracoviste = [
     { nazev: "Ambulance urologie", nazevEN: "Urology Outpatient Clinic", budova: "3", patro: "-1" },
     { nazev: "Dětská ORL", nazevEN: "Pediatric ENT", budova: "3", patro: "-1" },
     { nazev: "Logopedie", nazevEN: "Speech Therapy", budova: "3", patro: "-1" },
-    { nazev: "Nemocniční kaple", nazevEN: "Hospital Chapel", budova: "3", patro: "-1" },
     { nazev: "Pohotovost oční", nazevEN: "Ophthalmology Emergency", budova: "3", patro: "1" },
     { nazev: "Lůžkové oddělení oční", nazevEN: "Ophthalmology Ward", budova: "3", patro: "1" },
     { nazev: "Všeobecná ambulance oční", nazevEN: "General Ophthalmology Outpatient", budova: "3", patro: "1" },
@@ -111,7 +110,7 @@ const synonyma = {
 const budovyData = {
     "b-01": { cislo: "1", nazev: "Budova 1", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "1" }] },
     "b-02": { cislo: "2", nazev: "Budova 2", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-03": { cislo: "3", nazev: "Budova 3", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
+    "b-03": { cislo: "3", nazev: "Budova 3", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "kaple", nazev: "Kaple", patro: "-1" }] },
     "b-04": { cislo: "4", nazev: "Budova 4", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
     "b-05": { cislo: "5", nazev: "Budova 5", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
     "b-06": { cislo: "6", nazev: "Budova 6", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "2" }] },
@@ -153,6 +152,11 @@ function getPoiIcon(type) {
             <path d="M10.833 48.3395L17.9001 29.541H22.5645L29.6316 48.3395H25.5325L21.7163 37.3149C21.575 36.7495 21.2924 36.184 21.1511 35.6186C21.0097 35.0533 20.8682 34.4879 20.5855 34.0639C20.4442 33.4985 20.3031 33.0745 20.1618 32.5092C20.0204 32.9332 19.879 33.4985 19.7377 34.0639C19.5963 34.6293 19.4548 35.1948 19.1721 35.7601C19.0307 36.3255 18.8895 36.7495 18.6068 37.3149L14.7907 48.3395H10.833ZM14.9318 44.0992V41.131H25.2499V44.0992H14.9318Z" fill="white"/>
             <path d="M34.8616 48.3395V32.6505H29.0664V29.541H44.7556V32.6505H38.9604V48.3395H34.8616Z" fill="white"/>
             <path d="M48.2891 48.3395V29.541H54.0842L57.4763 39.1522C57.759 39.8589 58.0418 40.7071 58.3245 41.5551C58.6072 42.5445 58.8899 43.2512 59.0312 43.9579C59.0312 43.5339 59.3136 42.9685 59.455 42.4032C59.5963 41.8378 59.7379 41.2725 60.0206 40.7071C60.3032 40.1417 60.4445 39.5762 60.5858 39.1522L64.1194 29.6823H69.9145V48.4809H66.0984V33.4985C66.0984 33.7812 65.9567 34.2053 65.8154 34.6293C65.8154 35.0533 65.533 35.4774 65.3916 35.9014C65.3916 36.3255 65.1089 36.7494 64.9675 37.0321L60.7273 48.3395H57.3348L53.236 37.0321C53.236 36.7494 52.9533 36.3255 52.812 35.9014C52.6706 35.4774 52.5292 35.0534 52.3879 34.488C52.3879 34.064 52.2466 33.6399 52.1052 33.3572V48.3395H48.2891Z" fill="white"/>
+        </svg>`,
+
+        'kaple': `<svg width="81" height="80" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40.1594 80.002C62.2508 80.002 80.1592 62.0929 80.1592 40.001C80.1592 17.9091 62.2508 0 40.1594 0C18.0679 0 0.15918 17.9091 0.15918 40.001C0.15918 62.0929 18.0679 80.002 40.1594 80.002Z" fill="#001829"/>
+        <path d="M42.8944 39.2533V27.2036H50.9649V21.7151H42.8944V13.6445H37.406V21.7151H29.3351V27.2036H37.406V39.2533C31.1697 40.5232 26.4713 46.0542 26.4713 52.6575C26.4713 60.1921 32.6087 66.3297 40.1431 66.3297C47.6775 66.3297 53.815 60.1921 53.815 52.6575C53.815 46.0542 49.1166 40.5373 42.8803 39.2533H42.8944ZM40.1573 63.4657C34.189 63.4657 29.3493 58.6118 29.3493 52.6575C29.3493 46.7032 34.2031 41.8496 40.1573 41.8496C46.1114 41.8496 50.9649 46.7032 50.9649 52.6575C50.9649 58.6118 46.1114 63.4657 40.1573 63.4657Z" fill="white"/>
         </svg>`,
         
         // Fallback для неизвестных типов
