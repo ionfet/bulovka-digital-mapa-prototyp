@@ -183,7 +183,7 @@ function renderWorkplaceList(items) {
             const div = document.createElement('div');
             div.className = 'workplace-item';
             div.innerHTML = `
-                <div class="flex-1" style="margin-right: 20px;">
+                <div class="flex-1">
                     <div class="font-semibold text-gray-900">${item.nazev}</div>
                     <div class="text-sm text-gray-500">${item.nazevEN}</div>
                 </div>
@@ -269,17 +269,40 @@ function showBuildingDetail(budovaId) {
         const oddeleniContainer = document.getElementById('tab-oddeleni');
         const oddeleniList = pracoviste.filter(p => p.budova === buildingData.cislo);
         
-        oddeleniContainer.innerHTML = oddeleniList.map(odd => `
-            <div class="flex items-center py-5 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
-                <div class="flex-1">
-                    <div class="text-sm text-gray-500 mb-2">
-                        <span class="floor-chip">1. patro</span>
-                    </div>
-                    <div class="font-semibold">${odd.nazev}</div>
+        // Группировка по этажам
+        const groupedByFloor = {};
+        oddeleniList.forEach(odd => {
+            // Затем будет реальное поле odd.patro, пока mockup "1. patro"
+            const floor = odd.patro || '1. patro';
+            if (!groupedByFloor[floor]) {
+                groupedByFloor[floor] = [];
+            }
+            groupedByFloor[floor].push(odd);
+        });
+        
+        // Сортировка этажей (1, 2, 3...)
+        const sortedFloors = Object.keys(groupedByFloor).sort((a, b) => {
+            const numA = parseInt(a);
+            const numB = parseInt(b);
+            return numA - numB;
+        });
+        
+        // Отрисовка по этажам
+        oddeleniContainer.innerHTML = sortedFloors.map(floor => `
+            <div class="floor-section">
+                <div class="floor-header">
+                    <div class="floor-badge">${floor}</div>
                 </div>
-                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
+                ${groupedByFloor[floor].map(odd => `
+                    <div class="flex items-center py-5 border-b border-gray-200 cursor-pointer hover:bg-gray-50">
+                        <div class="flex-1">
+                            <div class="font-semibold">${odd.nazev}</div>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                `).join('')}
             </div>
         `).join('');
         

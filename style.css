@@ -87,8 +87,7 @@ body {
 /* Seznam pracovišť */
 /* Алфавитный заголовок */
 .alphabet-header {
-    padding: 16px 12px 8px 12px;
-    margin-top: 8px;
+    padding: 30px 12px 8px 12px;
 }
 
 .alphabet-badge {
@@ -104,13 +103,35 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Секції етажів в табі "Oddělení" */
+.floor-section {
+    margin-bottom: 16px;
+}
+
+.floor-header {
+    padding: 20px 16px 12px 0px;
+}
+
+.floor-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background: #dfdfdf;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 .workplace-item {
     display: flex;
-    align-items: center;
-    padding: 12px;
+    align-items: flex-start;
+    padding: 12px 12px 20px;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s;
+    flex-direction:column;
 }
 
 .workplace-item:hover {
@@ -128,7 +149,7 @@ body {
     justify-content: center;
     font-size: 14px;
     font-weight: 600;
-    margin-left: auto;
+    margin-top: 10px;
     flex-shrink: 0;
 }
 
@@ -154,16 +175,6 @@ rect.is-highlighted {
 .tab-button.active {
     border-bottom-color: #16a34a;
     color: #16a34a;
-}
-
-/* Patro chip */
-.floor-chip {
-    display: inline-block;
-    padding: 4px 12px;
-    background: #e5e7eb;
-    border-radius: 12px;
-    font-size: 12px;
-    color: #6b7280;
 }
 
 /* Responzivita pro mobil */
