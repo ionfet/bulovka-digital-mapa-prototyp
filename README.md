@@ -2,6 +2,8 @@
 
 Webová aplikace pro vyhledávání a navigaci v areálu Fakultní nemocnice Bulovka.
 
+https://ionfet.github.io/bulovka-digital-mapa-prototyp/
+
 ## 📋 Přehled
 
 Tento projekt je **MVP (Minimum Viable Product)** - minimální funkční prototyp interaktivní mapy, která:
