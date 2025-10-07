@@ -1,0 +1,28 @@
+📸 JAK PŘIDAT FOTOGRAFII BUDOVY
+=================================
+
+1. UMÍSTĚTE FOTKU do této složky (assets/photos/)
+   Příklad: budova-1.jpg, budova-2.png
+
+2. OTEVŘETE soubor: app.js
+
+3. NAJDĚTE příslušnou budovu:
+   - Pro budovu 1 hledejte: "b-01"
+   - Pro budovu 2 hledejte: "b-02"
+   - atd.
+
+4. ZMĚŇTE řádek:
+   PŘED:  foto: null
+   PO:    foto: "assets/photos/budova-1.jpg"
+
+5. ULOŽTE soubor a obnovte stránku v prohlížeči
+
+
+DOPORUČENÍ PRO FOTOGRAFIE:
+-------------------------
+✓ Horizontální formát (na šířku)
+✓ Poměr stran 4:3 (např. 1600×1200px, 1200×900px)
+✓ Formáty: JPG, PNG, WebP
+✓ Velikost: maximálně 1600px šířka
+
+Fotka se automaticky zobrazí ve správném formáté 4:3!

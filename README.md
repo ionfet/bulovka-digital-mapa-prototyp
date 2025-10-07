@@ -24,159 +24,40 @@ Tento projekt je **MVP (Minimum Viable Product)** - minimální funkční protot
 - **Zvýraznění při hoveru** - najetím myši na pracoviště se zvýrazní budova na mapě
 
 ### 🏢 Detail budovy
-- **Informace o budově**: název, adresa, fotka (placeholder)
+- **Informace o budově**: název, adresa, fotografie (formát 4:3)
 - **Dopravní spojení**: nejbližší zastávka MHD a čísla linek
 - **Navigace**: tlačítko pro otevření Google Maps s přesnou GPS lokací
 - **Oddělení**: seznam všech pracovišť v budově seřazený podle pater
 - **POI (Points of Interest)**: lékárna, bankomat, jídelna apod.
 
-### 📱 Responzivní design
-- **Desktop**: levý boční panel (drawer), šířka 33%
-- **Mobil**: spodní panel (bottom sheet), výška 50%
+## 📸 Přidání fotografií budov
 
-## 🚀 Jak spustit
+Aplikace podporuje fotografie jednotlivých budov. Všechny fotografie se zobrazují v **horizontálním formátu 4:3**.
 
-### Varianta 1: Otevřít přímo v prohlížeči
-Jednoduše poklikejte na soubor `index.html` nebo ho přetáhněte do prohlížeče.
+### Postup přidání fotografie:
 
-```bash
-# macOS
-open index.html
+1. **Umístěte fotku** do složky `assets/photos/` (např. `budova-1.jpg`)
+2. **Otevřete** soubor `app.js`
+3. **Najděte** příslušnou budovu v objektu `budovyData` (např. `"b-01"` pro budovu 1)
+4. **Změňte** `foto: null` na cestu k souboru:
+   ```javascript
+   "b-01": { 
+       cislo: "1", 
+       nazev: "Budova 1", 
+       // ... ostatní vlastnosti ...
+       foto: "assets/photos/budova-1.jpg"  // ← tady změňte
+   }
+   ```
+5. **Uložte** soubor a fotka se automaticky zobrazí v detailu budovy
 
-# Windows
-start index.html
+### Doporučení:
+- ✅ Horizontální formát (šířka > výška)
+- ✅ Ideálně poměr stran **4:3** (např. 1600×1200px, 1200×900px)
+- ✅ Formáty: JPG, PNG, WebP
+- ✅ Doporučená velikost: max 1600px šířka (pro rychlé načítání)
 
-# Linux
-xdg-open index.html
-```
-
-### Varianta 2: Lokální server (doporučeno)
-Pro plnou funkčnost doporučujeme spustit lokální server:
-
-```bash
-# Python 3
-python3 -m http.server 8000
-
-# Node.js
-npx http-server -p 8000
-```
-
-Poté otevřete v prohlížeči: `http://localhost:8000`
-
-## 📖 Jak používat
-
-1. **Otevřít seznam pracovišť**
-   - Klikněte na tlačítko **"☰ Seznam pracovišť"** vlevo nahoře
-
-2. **Vyhledávat pracoviště**
-   - Začněte psát do pole "Hledat pracoviště..."
-   - Můžete psát bez diakritiky (např. "plicni" najde "Plicní")
-   - Zkuste synonyma: "MR", "CT", "gyn", "děti"
-
-3. **Zvýraznit budovu**
-   - Najeďte myší na pracoviště v seznamu
-   - Budova se na mapě zvýrazní zeleně
-
-4. **Zobrazit detail budovy**
-   - Klikněte na pracoviště v seznamu, nebo
-   - Klikněte přímo na budovu na mapě
-
-5. **Navigovat k budově**
-   - V detailu budovy klikněte na zelené tlačítko **"Navigovat k budově"**
-   - Otevře se Google Maps s GPS souřadnicemi
-
-6. **Prohlížet oddělení a POI**
-   - Přepínejte mezi taby **"Oddělení"** a **"POI"**
-   - V tabu Oddělení najdete seznam všech pracovišť v budově
-   - V tabu POI najdete lékárny, bankomaty a další služby
-
-7. **Ovládat mapu**
-   - **Posouvání**: táhněte myší nebo prstem
-   - **Zoom**: kolečko myši nebo dvouprstový dotyk
-   - **Ovládací prvky**: použijte ikony v pravém dolním rohu mapy
-
-## 🛠️ Technologie
-
-- **HTML5** - struktura aplikace
-- **CSS3** - vlastní styly v `style.css`
-- **Tailwind CSS** (CDN) - utility classes pro responzivní design
-- **Vanilla JavaScript** - logika aplikace (bez frameworků)
-- **svg-pan-zoom** (CDN) - interakce s SVG mapou
-- **SVG** - vektorová mapa areálu
-
-## 📁 Struktura projektu
-
-```
-digital-prototyp-v2/
-├── index.html              # HLAVNÍ SOUBOR - HTML struktura a JavaScript
-├── style.css               # CSS STYLY - všechny styly aplikace
-├── README.md               # Tento soubor - dokumentace
-├── PROGRESS.md             # Technická dokumentace vývoje
-└── specs/
-    ├── mapa.svg.txt        # SVG mapa (vložena do index.html)
-    ├── buildings.md        # Data pracovišť
-    ├── maps-id.md          # Dokumentace SVG struktury
-    └── Project-info.md     # Zadání projektu
-```
-
-## 📊 Data
-
-### Pracoviště
-- **57 pracovišť** z buildings.md
-- Každé má: český název, anglický název, číslo budovy
-
-### Budovy
-- **13 budov** na mapě (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 15, 16, 17)
-- Mockup data: GPS souřadnice, MHD zastávka, linky
-
-### POI (Points of Interest)
-- Lékárna: budovy 1, 6, 13
-- Bankomat: budova 13
-- Jídelna: budova "b-jidelna"
-
-## 🔍 Vyhledávací synonyma
-
-| Hledáte | Najde |
-|---------|-------|
-| plicní, plicni | Pneumologie |
-| MR, MRI, mri | Magnetická rezonance |
-| CT, ct | CT (Computed Tomography) |
-| RTG, rentgen, xray | Rentgen, Radiodiagnostické |
-| gyn | Gynekologie |
-| děti, dětské | Pediatrické oddělení |
-
-## 🐛 Známé limity MVP
-
-- GPS souřadnice budov jsou zatím **mockup** (všechny stejné)
-- MHD zastávky a linky jsou **mockup** data
-- Čísla pater u oddělení jsou zatím **pevně nastavena na "1. patro"**
-- Fotky budov jsou **placeholder** (šedý obdélník)
-- Některá pracoviště nemají číslo budovy (označeno jako "Neuvedeno")
-
-## 📝 Poznámky
-
-### Pro další vývoj:
-1. Přidat **reálné GPS souřadnice** pro každou budovu
-2. Mapovat **oddělení na konkrétní patra**
-3. Přidat **skutečné fotky** budov a vchodů
-4. Doplnit **více POI** (WC, výtahy, čekárny)
-5. Implementovat **routing mezi budovami** uvnitř areálu
-6. Přidat **jazykové mutace** (CZ/EN přepínač)
-
-### Pro AI/programátora pokračujícího v projektu:
-- Přečtěte si **PROGRESS.md** - obsahuje kompletní technickou dokumentaci
-- SVG mapa má strukturu popsanou v **specs/maps-id.md**
-- Data pracovišť jsou v **specs/buildings.md**
-- Zadání projektu je v **specs/Project-info.md**
-
-## 📄 Licence
-
-Tento projekt je vytvořen pro Fakultní nemocnici Bulovka.
+Pokud fotku nepřidáte (nebo nastavíte `foto: null`), zobrazí se placeholder s textem "Foto budovy".
 
 ---
 
-**Vytvořeno**: Říjen 2024  
-**Verze**: 1.0 (MVP)  
-**Status**: ✅ Funkční prototyp
-
-
+**Vytvořeno**: Daniil Kuželev | Toman Design | 2025

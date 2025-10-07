@@ -108,33 +108,33 @@ const synonyma = {
 
 // Mockup данные о зданиях
 const budovyData = {
-    "b-01": { cislo: "1", nazev: "Budova 1", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "1" }] },
-    "b-02": { cislo: "2", nazev: "Budova 2", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-03": { cislo: "3", nazev: "Budova 3", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "kaple", nazev: "Kaple", patro: "-1" }] },
-    "b-04": { cislo: "4", nazev: "Budova 4", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-05": { cislo: "5", nazev: "Budova 5", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-06": { cislo: "6", nazev: "Budova 6", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "2" }] },
-    "b-07": { cislo: "7", nazev: "Budova 7", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-08": { cislo: "8", nazev: "Budova 8", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-09": { cislo: "9", nazev: "Budova 9", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-10": { cislo: "10", nazev: "Budova 10", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-11": { cislo: "11", nazev: "Budova 11", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-12": { cislo: "12", nazev: "Budova 12", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-13": { cislo: "13", nazev: "Budova 13", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "2" }, { typ: "atm", nazev: "Bankomat", patro: "1" }] },
-    "b-14": { cislo: "14", nazev: "Budova 14", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-15": { cislo: "15", nazev: "Budova 15", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-16": { cislo: "16", nazev: "Budova 16", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-17": { cislo: "17", nazev: "Budova 17", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-18": { cislo: "18", nazev: "Budova 18", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-19": { cislo: "19", nazev: "Budova 19", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-20": { cislo: "20", nazev: "Budova 20", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-23": { cislo: "23", nazev: "Budova 23", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-26": { cislo: "26", nazev: "Budova 26", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-40": { cislo: "40", nazev: "Budova 40", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-42": { cislo: "42", nazev: "Budova 42", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-43": { cislo: "43", nazev: "Budova 43", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [] },
-    "b-jidelna": { cislo: "Jídelna", nazev: "Jídelna", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "jidelna", nazev: "Hlavní jídelna", patro: "1" }] },
-    "b-secondary-lekarna": { cislo: "Lékárna", nazev: "Vedlejší lékárna", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Vedlejší lékárna", patro: "1" }] }
+    "b-01": { cislo: "1", nazev: "Budova 1", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "1" }], foto: null },
+    "b-02": { cislo: "2", nazev: "Budova 2", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-03": { cislo: "3", nazev: "Budova 3", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "kaple", nazev: "Kaple", patro: "-1" }], foto: "assets/photos/budova-3.jpg" },
+    "b-04": { cislo: "4", nazev: "Budova 4", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-05": { cislo: "5", nazev: "Budova 5", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-06": { cislo: "6", nazev: "Budova 6", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "2" }], foto: null },
+    "b-07": { cislo: "7", nazev: "Budova 7", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-08": { cislo: "8", nazev: "Budova 8", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-09": { cislo: "9", nazev: "Budova 9", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-10": { cislo: "10", nazev: "Budova 10", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-11": { cislo: "11", nazev: "Budova 11", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-12": { cislo: "12", nazev: "Budova 12", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-13": { cislo: "13", nazev: "Budova 13", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Lékárna", patro: "2" }, { typ: "atm", nazev: "Bankomat", patro: "1" }], foto: null },
+    "b-14": { cislo: "14", nazev: "Budova 14", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-15": { cislo: "15", nazev: "Budova 15", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-16": { cislo: "16", nazev: "Budova 16", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-17": { cislo: "17", nazev: "Budova 17", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-18": { cislo: "18", nazev: "Budova 18", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-19": { cislo: "19", nazev: "Budova 19", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-20": { cislo: "20", nazev: "Budova 20", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-23": { cislo: "23", nazev: "Budova 23", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-26": { cislo: "26", nazev: "Budova 26", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-40": { cislo: "40", nazev: "Budova 40", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-42": { cislo: "42", nazev: "Budova 42", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-43": { cislo: "43", nazev: "Budova 43", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [], foto: null },
+    "b-jidelna": { cislo: "Jídelna", nazev: "Jídelna", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "jidelna", nazev: "Hlavní jídelna", patro: "1" }], foto: null },
+    "b-secondary-lekarna": { cislo: "Lékárna", nazev: "Vedlejší lékárna", adresa: "Budínova 67/2, Prague", gps: { lat: 50.1109, lng: 14.4618 }, mhd: { zastavka: "Bulovka", vzdalenost: "150 m", linky: ["136", "140", "201"] }, poi: [{ typ: "lekarna", nazev: "Vedlejší lékárna", patro: "1" }], foto: null }
 };
 
 // ===== ФУНКЦИИ =====
@@ -316,6 +316,25 @@ function showBuildingDetail(budovaId) {
         document.getElementById('building-title').textContent = buildingData.nazev;
         document.getElementById('building-address').textContent = buildingData.adresa;
         document.getElementById('building-transport').textContent = `Linky: ${buildingData.mhd.linky.join(', ')}`;
+        
+        // Фото здания или placeholder (формат 3:2)
+        const photoContainer = document.getElementById('building-photo');
+        if (buildingData.foto) {
+            // Есть фото - показываем картинку
+            photoContainer.innerHTML = `
+                <img src="${buildingData.foto}" 
+                     alt="${buildingData.nazev}" 
+                     class="w-full h-full object-cover"
+                     style="aspect-ratio: 3/2;">
+            `;
+        } else {
+            // Нет фото - показываем placeholder
+            photoContainer.innerHTML = `
+                <div class="w-full h-full flex items-center justify-center text-gray-500">
+                    Foto budovy
+                </div>
+            `;
+        }
         
         // Отделения в здании
         const oddeleniContainer = document.getElementById('tab-oddeleni');
