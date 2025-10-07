@@ -431,6 +431,9 @@ function closeBuildingDetail() {
     document.getElementById('workplace-list').style.display = 'block';
     document.querySelector('#panel > div:first-child').style.display = 'block';
     clearHighlight();
+    
+    // Вернуть карту в начальное состояние (плавно)
+    smoothResizeMap({ preserveView: false });
 }
 
 // ===== ИНИЦИАЛИЗАЦИЯ =====
