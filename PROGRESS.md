@@ -299,4 +299,16 @@ python3 -m http.server 8000
 
 ---
 
+### 7 октября 2025 — Navigace na hlavní parkoviště
+**Co:**
+- Přidáno tlačítko „Navigovat k hlavnímu parkovišti“ v detailu budovy.
+- Handler otevírá Google Maps odkaz: https://maps.app.goo.gl/U87sfZzSznpMMQYz9
+
+**Kde:**
+- `index.html` — druhé tlačítko v sekci navigace detailu.
+- `js/ui.js` — `onclick` pro `#navigate-main-parking-button` (otevírá statický odkaz).
+
+**Poznámky:**
+- Zachována původní funkce „Navigovat k budově“ dle GPS budovy.
+
 **Конец файла** – этот документ предназначен для вставки в контекст Coding LLM. Содержимое кратко, но покрывает поведение, структуру данных, инварианты и регрессионные проверки.

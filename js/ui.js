@@ -179,11 +179,21 @@ function showBuildingDetail(budovaId) {
             </div>
         `).join('');
         
-        // Навигация
-        document.getElementById('navigate-button').onclick = () => {
+        // Navigace
+        const navigateButton = document.getElementById('navigate-button');
+        navigateButton.onclick = () => {
             const url = `https://www.google.com/maps/dir/?api=1&destination=${buildingData.gps.lat},${buildingData.gps.lng}`;
             window.open(url, '_blank');
         };
+
+        // Navigovat k hlavnímu parkovišti (statický odkaz dle požadavku)
+        const navigateMainParkingBtn = document.getElementById('navigate-main-parking-button');
+        if (navigateMainParkingBtn) {
+            navigateMainParkingBtn.onclick = () => {
+                const url = 'https://maps.app.goo.gl/U87sfZzSznpMMQYz9';
+                window.open(url, '_blank');
+            };
+        }
         
         highlightBudova(budovaId);
         
