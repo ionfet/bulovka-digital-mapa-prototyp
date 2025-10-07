@@ -20,7 +20,7 @@ const pracoviste = [
     { nazev: "Hematologie a transfuze", nazevEN: "Hematology and Transfusion", budova: "8" },
     { nazev: "Infekční nemoci", nazevEN: "Infectious Diseases", budova: "7" },
     { nazev: "Interní klinika FNB a 3. LF UK", nazevEN: "Internal Medicine Clinic FNB and 3rd FM CU", budova: "10" },
-    { nazev: "Intervenční radiologie", nazevEN: "Interventional Radiology", budova: "3" },
+    { nazev: "Intervenční radiologie", nazevEN: "Interventional Radiology", budova: "3", patro: "-1" },
     { nazev: "Klinická farmacie", nazevEN: "Clinical Pharmacy", budova: "8" },
     { nazev: "Komplexní centrum pro ortopedickou léčbu nádorů pohybového aparátu", nazevEN: "Comprehensive Centre for Orthopaedic Treatment of Musculoskeletal Tumours", budova: "13" },
     { nazev: "Komplexní onkologické centrum", nazevEN: "Comprehensive Oncology Centre", budova: "6" },
@@ -32,15 +32,15 @@ const pracoviste = [
     { nazev: "Mamodiagnostické centrum", nazevEN: "Mammography Centre", budova: "16" },
     { nazev: "Mikrobiologie", nazevEN: "Microbiology", budova: "8" },
     { nazev: "Neonatologie", nazevEN: "Neonatology Department", budova: "15" },
-    { nazev: "Neurologie", nazevEN: "Neurology Department", budova: "3" },
+    { nazev: "Neurologie", nazevEN: "Neurology Department", budova: "3", patro: "4" },
     { nazev: "Nutriční terapeuti", nazevEN: "Nutritional Therapists", budova: "18" },
     { nazev: "Národní jednotka dohledu na TBC", nazevEN: "National Tuberculosis Surveillance Unit", budova: "20" },
     { nazev: "Následná péče – rehabilitační oddělení", nazevEN: "Follow-up Care – Rehabilitation Department", budova: "9" },
-    { nazev: "ORL – ušní, nosní a krční", nazevEN: "Otorhinolaryngology", budova: "3" },
+    { nazev: "ORL – ušní, nosní a krční", nazevEN: "Otorhinolaryngology", budova: "3", patro: "2" },
     { nazev: "Odběrové pracoviště", nazevEN: "Central Sampling Department", budova: "8" },
     { nazev: "Onkologie", nazevEN: "Oncology Center", budova: "15" },
     { nazev: "Ortopedie", nazevEN: "Orthopedic Clinic", budova: "13" },
-    { nazev: "Oční", nazevEN: "Ophthalmology Department", budova: "3" },
+    { nazev: "Oční", nazevEN: "Ophthalmology Department", budova: "3", patro: "1" },
     { nazev: "Patologie", nazevEN: "Pathology Department", budova: "17" },
     { nazev: "Parazitologie – NRL", nazevEN: "Parasitology – NRL", budova: "8" },
     { nazev: "Pediatrie (Dětské oddělení)", nazevEN: "Pediatric Department", budova: "15" },
@@ -51,7 +51,7 @@ const pracoviste = [
     { nazev: "Pracovní lékařské služby", nazevEN: "Occupational Health Services", budova: "1" },
     { nazev: "Protialkoholní záchytná stanice", nazevEN: "Alcohol Detoxification Station", budova: "19" },
     { nazev: "Protonové centrum", nazevEN: "Proton Therapy Center", budova: "42" },
-    { nazev: "Psychologie", nazevEN: "Psychology", budova: "3" },
+    { nazev: "Psychologie", nazevEN: "Psychology", budova: "3", patro: "-1" },
     { nazev: "Radiodiagnostické oddělení", nazevEN: "Radiodiagnostic Department", budova: "1" },
     { nazev: "Radiofyzika", nazevEN: "Radiophysics", budova: "16" },
     { nazev: "Rehabilitace", nazevEN: "Rehabilitation", budova: "9" },
@@ -61,9 +61,35 @@ const pracoviste = [
     { nazev: "Soudní lékařství", nazevEN: "Forensic Medicine", budova: "17" },
     { nazev: "Toxikologie", nazevEN: "Toxicology", budova: "17" },
     { nazev: "Urgentní příjem", nazevEN: "Emergency Department", budova: "13" },
-    { nazev: "Urologie", nazevEN: "Urology Department", budova: "3" },
+    { nazev: "Urologie", nazevEN: "Urology Department", budova: "3", patro: "-1" },
+    { nazev: "Urologické oddělení", nazevEN: "Urology Ward", budova: "3", patro: "3" },
     { nazev: "Ústav gastrointestinální onkologie", nazevEN: "Institute of Gastrointestinal Oncology", budova: "10" },
-    { nazev: "Virologie", nazevEN: "Virology", budova: "8" }
+    { nazev: "Virologie", nazevEN: "Virology", budova: "8" },
+    
+    // Budova 3 - doplňující služby po patrech
+    { nazev: "Ambulance urologie", nazevEN: "Urology Outpatient Clinic", budova: "3", patro: "-1" },
+    { nazev: "Dětská ORL", nazevEN: "Pediatric ENT", budova: "3", patro: "-1" },
+    { nazev: "Logopedie", nazevEN: "Speech Therapy", budova: "3", patro: "-1" },
+    { nazev: "Nemocniční kaple", nazevEN: "Hospital Chapel", budova: "3", patro: "-1" },
+    { nazev: "Pohotovost oční", nazevEN: "Ophthalmology Emergency", budova: "3", patro: "1" },
+    { nazev: "Lůžkové oddělení oční", nazevEN: "Ophthalmology Ward", budova: "3", patro: "1" },
+    { nazev: "Všeobecná ambulance oční", nazevEN: "General Ophthalmology Outpatient", budova: "3", patro: "1" },
+    { nazev: "Speciální poradny očního oddělení", nazevEN: "Special Ophthalmology Consultations", budova: "3", patro: "1" },
+    { nazev: "Pohotovost ORL", nazevEN: "ENT Emergency", budova: "3", patro: "2" },
+    { nazev: "Foniatrie", nazevEN: "Phoniatrics", budova: "3", patro: "2" },
+    { nazev: "Lůžkové oddělení ORL", nazevEN: "ENT Ward", budova: "3", patro: "2" },
+    { nazev: "Speciální poradny ORL", nazevEN: "Special ENT Consultations", budova: "3", patro: "2" },
+    { nazev: "Pohotovost urologie", nazevEN: "Urology Emergency", budova: "3", patro: "3" },
+    { nazev: "Lůžková část urologie", nazevEN: "Urology Inpatient Unit", budova: "3", patro: "3" },
+    { nazev: "Centrum vysoce specializované onkologické péče", nazevEN: "Highly Specialized Oncology Care Center", budova: "3", patro: "3" },
+    { nazev: "Pohotovost neurologie", nazevEN: "Neurology Emergency", budova: "3", patro: "4" },
+    { nazev: "Chronická ambulance neurologie", nazevEN: "Chronic Neurology Outpatient", budova: "3", patro: "4" },
+    { nazev: "Neurofyziologické laboratoře", nazevEN: "Neurophysiology Laboratories", budova: "3", patro: "4" },
+    { nazev: "Duplexní sonografie", nazevEN: "Duplex Sonography", budova: "3", patro: "4" },
+    { nazev: "Oddělení informační techniky", nazevEN: "IT Department", budova: "3", patro: "5" },
+    { nazev: "Smíšené operační sály", nazevEN: "Mixed Operating Rooms", budova: "3", patro: "5" },
+    { nazev: "Oddělení zdravotních pojišťoven", nazevEN: "Health Insurance Department", budova: "3", patro: "5" },
+    { nazev: "Endoskopický sál", nazevEN: "Endoscopic Operating Room", budova: "3", patro: "5" }
 ];
 
 // Синонимы для поиска
@@ -113,6 +139,28 @@ const budovyData = {
 };
 
 // ===== ФУНКЦИИ =====
+
+// Получение иконки POI по типу
+function getPoiIcon(type) {
+    const icons = {
+        'lekarna': `<svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.9997 80C34.346 80 29.1161 79.0107 24.3105 76.8905C19.5049 74.9117 15.2646 71.9435 11.5897 68.41C7.91477 64.7351 5.08792 60.4948 3.10912 55.6892C1.13033 50.8835 0 45.6537 0 40C0 34.3463 0.988983 29.1165 3.10912 24.3108C5.08792 19.5052 8.05611 15.2649 11.5897 11.59C15.2646 7.91511 19.5049 5.08826 24.3105 3.10947C29.1161 1.13067 34.346 0 39.9997 0C45.6534 0 50.8832 0.989328 55.6888 3.10947C60.4945 5.08826 64.7347 8.05645 68.4096 11.59C72.0845 15.2649 74.9114 19.5052 76.8902 24.3108C78.869 29.1165 80 34.3463 80 40C80 45.6537 79.0103 50.8835 76.8902 55.6892C74.9114 60.4948 71.9432 64.8764 68.4096 68.41C64.7347 72.0849 60.4945 74.9117 55.6888 76.8905C50.8832 78.8693 45.6534 80 39.9997 80Z" fill="#029447"/>
+            <path d="M32.807 63.9999H47.193V47.1926H64V32.8067H47.193V15.9999H32.807V32.8067H16V47.1926H32.807V63.9999Z" fill="white"/>
+        </svg>`,
+        
+        'atm': `<svg width="40" height="40" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40.7979 79.9998C62.8892 79.9998 80.7979 62.0914 80.7979 40C80.7979 17.9086 62.8892 0 40.7979 0C18.7065 0 0.797852 17.9086 0.797852 40C0.797852 62.0914 18.7065 79.9998 40.7979 79.9998Z" fill="#001829"/>
+            <path d="M10.833 48.3395L17.9001 29.541H22.5645L29.6316 48.3395H25.5325L21.7163 37.3149C21.575 36.7495 21.2924 36.184 21.1511 35.6186C21.0097 35.0533 20.8682 34.4879 20.5855 34.0639C20.4442 33.4985 20.3031 33.0745 20.1618 32.5092C20.0204 32.9332 19.879 33.4985 19.7377 34.0639C19.5963 34.6293 19.4548 35.1948 19.1721 35.7601C19.0307 36.3255 18.8895 36.7495 18.6068 37.3149L14.7907 48.3395H10.833ZM14.9318 44.0992V41.131H25.2499V44.0992H14.9318Z" fill="white"/>
+            <path d="M34.8616 48.3395V32.6505H29.0664V29.541H44.7556V32.6505H38.9604V48.3395H34.8616Z" fill="white"/>
+            <path d="M48.2891 48.3395V29.541H54.0842L57.4763 39.1522C57.759 39.8589 58.0418 40.7071 58.3245 41.5551C58.6072 42.5445 58.8899 43.2512 59.0312 43.9579C59.0312 43.5339 59.3136 42.9685 59.455 42.4032C59.5963 41.8378 59.7379 41.2725 60.0206 40.7071C60.3032 40.1417 60.4445 39.5762 60.5858 39.1522L64.1194 29.6823H69.9145V48.4809H66.0984V33.4985C66.0984 33.7812 65.9567 34.2053 65.8154 34.6293C65.8154 35.0533 65.533 35.4774 65.3916 35.9014C65.3916 36.3255 65.1089 36.7494 64.9675 37.0321L60.7273 48.3395H57.3348L53.236 37.0321C53.236 36.7494 52.9533 36.3255 52.812 35.9014C52.6706 35.4774 52.5292 35.0534 52.3879 34.488C52.3879 34.064 52.2466 33.6399 52.1052 33.3572V48.3395H48.2891Z" fill="white"/>
+        </svg>`,
+        
+        // Fallback для неизвестных типов
+        'default': `<div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-600">?</div>`
+    };
+    
+    return icons[type] || icons['default'];
+}
 
 // Нормализация текста (удаление диакритики)
 function normalize(text) {
@@ -272,15 +320,16 @@ function showBuildingDetail(budovaId) {
         // Группировка по этажам
         const groupedByFloor = {};
         oddeleniList.forEach(odd => {
-            // Затем будет реальное поле odd.patro, пока mockup "1. patro"
-            const floor = odd.patro || '1. patro';
+            // Форматируем этаж: "-1" -> "-1. patro", "1" -> "1. patro", fallback -> "1. patro"
+            const floorNum = odd.patro || '1';
+            const floor = `${floorNum}. patro`;
             if (!groupedByFloor[floor]) {
                 groupedByFloor[floor] = [];
             }
             groupedByFloor[floor].push(odd);
         });
         
-        // Сортировка этажей (1, 2, 3...)
+        // Сортировка этажей (-1, 0, 1, 2, 3...)
         const sortedFloors = Object.keys(groupedByFloor).sort((a, b) => {
             const numA = parseInt(a);
             const numB = parseInt(b);
@@ -308,17 +357,40 @@ function showBuildingDetail(budovaId) {
         
         // POI
         const poiContainer = document.getElementById('tab-poi');
-        poiContainer.innerHTML = buildingData.poi.map(poi => `
-            <div class="flex items-center py-3 border-b border-gray-200">
-                <div class="w-10 h-10 mr-3 flex items-center justify-center">
-                    ${poi.typ === 'lekarna' ? 
-                        '<svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>' : 
-                        '<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold">ATM</div>'}
+        
+        // Группировка по этажам
+        const poiGroupedByFloor = {};
+        buildingData.poi.forEach(poi => {
+            const floor = `${poi.patro}. patro`;
+            if (!poiGroupedByFloor[floor]) {
+                poiGroupedByFloor[floor] = [];
+            }
+            poiGroupedByFloor[floor].push(poi);
+        });
+        
+        // Сортировка этажей (1, 2, 3...)
+        const poiSortedFloors = Object.keys(poiGroupedByFloor).sort((a, b) => {
+            const numA = parseInt(a);
+            const numB = parseInt(b);
+            return numA - numB;
+        });
+        
+        // Отрисовка по этажам
+        poiContainer.innerHTML = poiSortedFloors.map(floor => `
+            <div class="floor-section">
+                <div class="floor-header">
+                    <div class="floor-badge">${floor}</div>
                 </div>
-                <div class="flex-1">
-                    <div class="font-semibold">${poi.nazev}</div>
-                    <div class="text-sm text-gray-500">${poi.patro}. patro</div>
-                </div>
+                ${poiGroupedByFloor[floor].map(poi => `
+                    <div class="flex items-center py-3 border-b border-gray-200">
+                        <div class="w-10 h-10 mr-3 flex items-center justify-center">
+                            ${getPoiIcon(poi.typ)}
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-semibold">${poi.nazev}</div>
+                        </div>
+                    </div>
+                `).join('')}
             </div>
         `).join('');
         
