@@ -96,25 +96,44 @@ function getPoiIcon(type) {
 ## 5) Поиск и нормализация
 
 ```js
+// Нормализация текста (удаление диакритики и лишних пробелов)
 function normalize(text) {
-  return text.toLowerCase()
+  return (text || "")
+    .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-const synonyms = [
-  [/(plicni|plicní|pneumo)/g, 'pneumologie'],
-  [/(mr|mri)/g, 'magneticka rezonance'],
-  [/ct/g, 'ct'],
-  [/rtg/g, 'rtg'],
-  [/(gyn|gynek)/g, 'gynekologie'],
-  [/(deti|děti)/g, 'detske']
-];
+// Синонимы: "ключевое слово" → "каноническая форма для поиска"
+// Все синонимы уже нормализованы (lowercase, без диакритики)
+const synonyma = {
+  "rtg": "rentgen", "xray": "rentgen", "skiagrafie": "rentgen",
+  "mr": "magneticka rezonance", "mri": "magneticka rezonance",
+  "ct": "radiodiagnosticke", "radiologie": "radiodiagnosticke",
+  "uz": "sonografie", "sono": "sonografie", "ultrazvuk": "sonografie",
+  "gyn": "gynekologie", "gynda": "gynekologie",
+  "deti": "pediatrie", "detske": "pediatrie", "pediatr": "pediatrie",
+  "plicni": "pneumologie", "plice": "pneumologie",
+  "emergency": "urgentni prijem", "er": "urgentni prijem", "urgent": "urgentni prijem",
+  "lekarna": "lekarna", "pharmacy": "lekarna",
+  "orl": "orl", "ent": "orl", "usni": "orl",
+  "ocni": "ocni", "oftalmologie": "ocni", "oko": "ocni",
+  // ... и еще ~150 синонимов (полный список в js/data.js)
+};
 
-function normalizeWithSynonyms(q) {
-  let s = normalize(q);
-  for (const [re, repl] of synonyms) s = s.replace(re, repl);
-  return s;
+// Поиск: сначала проверяем синоним, потом ищем в названиях
+function search(query) {
+  if (!query) return pracoviste;
+  const normalized = normalize(query);
+  const canonical = synonyma[normalized] || normalized;
+  return pracoviste.filter(p => {
+    const nazevNorm = normalize(p.nazev);
+    const nazevENNorm = normalize(p.nazevEN);
+    return nazevNorm.includes(canonical) || nazevENNorm.includes(canonical) 
+        || nazevNorm.includes(normalized) || nazevENNorm.includes(normalized);
+  });
 }
 ```
 
@@ -301,7 +320,7 @@ python3 -m http.server 8000
 
 ### 7 октября 2025 — Navigace na hlavní parkoviště
 **Co:**
-- Přidáno tlačítko „Navigovat k hlavnímu parkovišti“ v detailu budovy.
+- Přidáno tlačítko „Navigovat k hlavnímu parkovišti" v detailu budovy.
 - Handler otevírá Google Maps odkaz: https://maps.app.goo.gl/U87sfZzSznpMMQYz9
 
 **Kde:**
@@ -309,6 +328,56 @@ python3 -m http.server 8000
 - `js/ui.js` — `onclick` pro `#navigate-main-parking-button` (otevírá statický odkaz).
 
 **Poznámky:**
-- Zachována původní funkce „Navigovat k budově“ dle GPS budovy.
+- Zachována původní funkce „Navigovat k budově" dle GPS budovy.
+
+---
+
+### 9 октября 2025 — Расширенный список синонимов для поиска
+**Что сделано:**
+- Заменил старый словарь синонимов (~10 записей) на расширенный (~170 записей)
+- Добавлены синонимы для всех основных медицинских отделений и служб:
+  - Zobrazování / Imaging: RTG, MRI, CT, УЗИ, маммография, интервенционная радиология
+  - Гинекология и роддом: гинекология, роддом, центр родовспоможения, пренатальная диагностика
+  - Педиатрия и неонатология: детское отделение, ОРЛ, офтальмология
+  - Неврология, урология, ортопедия
+  - Хирургия и операционные
+  - Онкология (включая КОЦ, GI онкология, протонный центр)
+  - Гастроэнтерология и эндоскопия
+  - Внутренняя медицина и лечение боли
+  - Аптеки
+  - Лаборатории и анализы: биохимия, микробиология, гематология, забор крови
+  - Инфекционные заболевания и HIV центр
+  - Пульмонология и туберкулез
+  - Реабилитация и последующий уход
+  - Психология и социальные службы
+  - Патология, судебная медицина, токсикология
+  - Неотложная помощь и поликлиника
+  - Административные отделы и прочие службы
+- Улучшена функция `normalize()`: теперь также удаляет лишние пробелы и обрабатывает null значения
+- Упрощена функция `search()`: теперь использует прямое сопоставление с синонимами через словарь (быстрее и понятнее)
+
+**Где изменено:**
+- `js/data.js` — обновлен объект `synonyma` (строки 94-377)
+- `js/utils.js` — улучшены функции `normalize()` и `search()` (строки 30-65)
+- `PROGRESS.md` — обновлена секция "Поиск и нормализация" (раздел 5)
+
+**Как это работает:**
+- Пользователь вводит запрос (например, "гинда", "CT", "emergency", "УЗИ")
+- Функция `normalize()` приводит к lowercase и убирает диакритику
+- Нормализованный запрос ищется в словаре синонимов
+- Если найден синоним, используется его каноническая форма (например, "gynda" → "gynekologie")
+- Каноническая форма ищется в названиях отделений
+- Если синоним не найден, используется сам запрос для поиска
+
+**Примеры работы:**
+- "xray" → находит "Rentgen (RTG)"
+- "CT" → находит "Radiodiagnostické oddělení"
+- "gynda" → находит все гинекологические отделения
+- "emergency" → находит "Urgentní příjem"
+- "УЗИ" / "sono" → находит "Sonografie"
+- "mamo" → находит "Mamodiagnostické centrum"
+- "deti" → находит все педиатрические отделения
+
+**Известные проблемы:** Нет
 
 **Конец файла** – этот документ предназначен для вставки в контекст Coding LLM. Содержимое кратко, но покрывает поведение, структуру данных, инварианты и регрессионные проверки.

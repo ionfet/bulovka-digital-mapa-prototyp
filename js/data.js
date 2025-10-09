@@ -91,19 +91,289 @@ const pracoviste = [
     { nazev: "Endoskopický sál", nazevEN: "Endoscopic Operating Room", budova: "3", patro: "5" }
 ];
 
-// Синонимы для поиска
+// Синонимы для поиска (обновлено: расширенный список 9 октября 2025)
+// Структура: "синоним" → "каноническое ключевое слово"
+// Все синонимы уже нормализованы (lowercase, без диакритики)
 const synonyma = {
-    "plicní": "pneumologie",
-    "plicni": "pneumologie",
-    "mr": "magnetická rezonance",
-    "mri": "magnetická rezonance",
-    "ct": "computed tomography",
-    "rtg": "rentgen",
-    "rentgen": "radiodiagnostické",
-    "xray": "rentgen",
-    "gyn": "gynekologicko",
-    "deti": "pediatrické",
-    "detske": "pediatrické"
+  // ===== ZOBRAZOVÁNÍ / IMAGING =====
+  "rtg": "rentgen",
+  "rentgen": "rentgen",
+  "xray": "rentgen",
+  "skiagrafie": "rentgen",
+
+  "ultrazvuk": "sonografie",
+  "uz": "sonografie",
+  "sono": "sonografie",
+  "sonografie": "sonografie",
+
+  "mr": "magneticka rezonance",
+  "mri": "magneticka rezonance",
+  "magnet": "magneticka rezonance",
+  "rezonance": "magneticka rezonance",
+  "magneticka rezonance": "magneticka rezonance",
+
+  "ct": "radiodiagnosticke",
+  "radiologie": "radiodiagnosticke",
+  "radiodiagnostika": "radiodiagnosticke",
+  "radiodiagnosticke": "radiodiagnosticke",
+
+  "ir": "intervencni radiologie",
+  "angiografie": "intervencni radiologie",
+  "embolizace": "intervencni radiologie",
+  "intervencni radiologie": "intervencni radiologie",
+
+  "radiofyzika": "radiofyzika",
+  "lekarska fyzika": "radiofyzika",
+
+  // ===== GYN / POROD =====
+  "gyn": "gynekologie",
+  "gynda": "gynekologie",
+  "gynekolog": "gynekologie",
+  "gynekologie": "gynekologie",
+
+  "porodnice": "porodnice",
+  "porod": "porodnice",
+  "maternity": "porodnice",
+
+  "porodni asistentka": "centrum porodni asistence",
+  "porodni asistence": "centrum porodni asistence",
+  "centrum porodni asistence": "centrum porodni asistence",
+  "prenatalni": "centrum pece o zenu a dite",
+  "prenatalni diagnostika": "centrum pece o zenu a dite",
+  "fetalni medicina": "centrum pece o zenu a dite",
+  "screening down": "centrum pece o zenu a dite",
+  "centrum pece o zenu a dite": "centrum pece o zenu a dite",
+
+  "mamografie": "mamodiagnosticke",
+  "mamo": "mamodiagnosticke",
+  "prsa": "mamodiagnosticke",
+  "screening prsu": "mamodiagnosticke",
+  "mamodiagnosticke": "mamodiagnosticke",
+
+  // ===== PED / NEO / ORL / OČNÍ =====
+  "pediatr": "pediatrie",
+  "pediatrie": "pediatrie",
+  "detske": "pediatrie",
+  "deti": "pediatrie",
+
+  "neonatologie": "neonatologie",
+  "novorozenecke": "neonatologie",
+
+  "orl": "orl",
+  "ent": "orl",
+  "usni": "orl",
+  "nosni": "orl",
+  "krcni": "orl",
+  "otolaryngologie": "orl",
+
+  "ocni": "ocni",
+  "oftalmologie": "ocni",
+  "oko": "ocni",
+
+  // ===== NEURO / URO / ORTOP =====
+  "neurologie": "neurologie",
+  "neuro": "neurologie",
+
+  "urologie": "urologie",
+  "uro": "urologie",
+  "prostata": "urologie",
+  "mocove cesty": "urologie",
+
+  "ortopedie": "ortopedie",
+  "ortho": "ortopedie",
+  "klouby": "ortopedie",
+  "kosti": "ortopedie",
+
+  "onko ortopedie": "onko ortopedie",
+  "nador kosti": "onko ortopedie",
+  "ortopedicka onkologie": "onko ortopedie",
+
+  // ===== CHIR / SÁLY =====
+  "chirurgie": "chirurgie",
+  "operace": "chirurgie",
+  "chir": "chirurgie",
+
+  "smisene operacni saly": "smisene operacni saly",
+  "operacni sal": "smisene operacni saly",
+
+  "detska chirurgie": "detska chirurgie a traumatologie",
+  "detska traumatologie": "detska chirurgie a traumatologie",
+  "trauma deti": "detska chirurgie a traumatologie",
+
+  // ===== ONKO =====
+  "onkologie": "onkologie",
+  "rakovina": "onkologie",
+  "chemoterapie": "onkologie",
+
+  "koc": "komplexni onkologicke centrum",
+  "komplexni onkologicke centrum": "komplexni onkologicke centrum",
+
+  "gi onkologie": "gastrointestinalni onkologie",
+  "gastro onkologie": "gastrointestinalni onkologie",
+  "gastrointestinalni onkologie": "gastrointestinalni onkologie",
+  "ustav gi onkologie": "ustav gastrointestinalni onkologie",
+  "ustav gastrointestinalni onkologie": "ustav gastrointestinalni onkologie",
+
+  "proton": "protonove centrum",
+  "protonove centrum": "protonove centrum",
+  "protonova terapie": "protonove centrum",
+  "ozarovani protony": "protonove centrum",
+
+  // ===== GASTRO / ENDO =====
+  "gastro": "gastroenterologicke",
+  "gastroenterologie": "gastroenterologicke",
+  "zaludek": "gastroenterologicke",
+  "streva": "gastroenterologicke",
+  "jatra": "gastroenterologicke",
+  "kolonoskopie": "gastroenterologicke",
+  "gastroskopie": "gastroenterologicke",
+  "gastroenterologicke": "gastroenterologicke",
+
+  "endoskopie": "endoskopicky sal",
+  "endoskopicky sal": "endoskopicky sal",
+
+  // ===== INTERNÍ / BOLEST =====
+  "interni": "interni klinika",
+  "internista": "interni klinika",
+  "vnitrni": "interni klinika",
+  "interni klinika": "interni klinika",
+
+  "bolest": "lecba bolesti",
+  "centrum bolesti": "lecba bolesti",
+  "algeziologie": "lecba bolesti",
+  "lecba bolesti": "lecba bolesti",
+
+  // ===== LÉKÁRNY =====
+  "lekarna": "lekarna",
+  "lekarny": "lekarna",
+  "pharmacy": "lekarna",
+  "apoteka": "lekarna",
+
+  // ===== LAB / ODBĚRY =====
+  "laborator": "centralni laboratore",
+  "laboratore": "centralni laboratore",
+  "centralni laboratore": "centralni laboratore",
+
+  "biochemie": "biochemie a imunologie",
+  "imunologie": "biochemie a imunologie",
+
+  "mikrobiologie": "mikrobiologie",
+  "parazitologie": "parazitologie",
+  "nrl": "parazitologie",
+  "virologie": "virologie",
+
+  "hematologie": "hematologie a transfuze",
+  "transfuze": "hematologie a transfuze",
+  "krev": "hematologie a transfuze",
+
+  "odbery": "odberove pracoviste",
+  "odber krve": "odberove pracoviste",
+  "odberove pracoviste": "odberove pracoviste",
+
+  // ===== INFEKCE / HIV =====
+  "infekce": "infekcni nemoci",
+  "infekcni": "infekcni nemoci",
+  "infekcni nemoci": "infekcni nemoci",
+
+  "hiv": "hiv centrum",
+  "aids": "hiv centrum",
+  "hiv centrum": "hiv centrum",
+
+  // ===== DÝCHACÍ =====
+  "plicni": "pneumologie",
+  "pneumologie": "pneumologie",
+  "plice": "pneumologie",
+
+  "tbc": "narodni jednotka dohledu na tbc",
+  "tuberkuloza": "narodni jednotka dohledu na tbc",
+  "narodni jednotka dohledu na tbc": "narodni jednotka dohledu na tbc",
+
+  // ===== REHAB / NÁSLEDNÁ =====
+  "rehabilitace": "rehabilitace",
+  "fyzioterapie": "rehabilitace",
+  "fyzio": "rehabilitace",
+
+  "nasledna pece": "nasledna pece",
+
+  // ===== MIND / SOC =====
+  "psychologie": "psychologie",
+  "psycholog": "psychologie",
+  "terapie": "psychologie",
+
+  "socialni": "socialne zdravotni",
+  "socialni pracovnik": "socialne zdravotni",
+  "socialne zdravotni": "socialne zdravotni",
+
+  // ===== PATO / FORENS =====
+  "patologie": "patologie",
+  "histologie": "patologie",
+  "biopsie": "patologie",
+
+  "soudni lekarstvi": "soudni lekarstvi",
+  "forenzni": "soudni lekarstvi",
+
+  "toxikologie": "toxikologie",
+  "otravy": "toxikologie",
+  "tox": "toxikologie",
+
+  // ===== URGENT / POHOTOVOST =====
+  "pohotovost": "pohotovost",
+  "lps": "pohotovost",
+
+  "urgent": "urgentni prijem",
+  "urgentni prijem": "urgentni prijem",
+  "er": "urgentni prijem",
+  "emergency": "urgentni prijem",
+
+  // ===== ADMIN / STERIL / OSTATNÍ =====
+  "it": "oddeleni informacni techniky",
+  "oddeleni informacni techniky": "oddeleni informacni techniky",
+
+  "pojistovna": "oddeleni zdravotnich pojistoven",
+  "pojistovny": "oddeleni zdravotnich pojistoven",
+  "oddeleni zdravotnich pojistoven": "oddeleni zdravotnich pojistoven",
+
+  "centralni sterilizace": "centralni sterilizace",
+  "sterilizace": "centralni sterilizace",
+
+  "cizinecke": "cizinecke oddeleni",
+  "foreigners": "cizinecke oddeleni",
+  "expat": "cizinecke oddeleni",
+  "cizinecke oddeleni": "cizinecke oddeleni",
+
+  "pracovni lekar": "pracovni lekarske sluzby",
+  "pracovne lekarske sluzby": "pracovni lekarske sluzby",
+  "prohlidky do prace": "pracovni lekarske sluzby",
+  "pls": "pracovni lekarske sluzby",
+  "pracovni lekarske sluzby": "pracovni lekarske sluzby",
+
+  "zachytka": "protialkoholni zachytna stanice",
+  "protialkoholni": "protialkoholni zachytna stanice",
+  "detox alkohol": "protialkoholni zachytna stanice",
+  "protialkoholni zachytna stanice": "protialkoholni zachytna stanice",
+
+  "centralni laboratore": "centralni laboratore",
+  "klinicka farmacie": "klinicka farmacie",
+
+  // ===== PODLAŽÍ / SPEC. AMB. V BUDOVĚ 3 =====
+  "foniatrie": "orl",
+  "logopedie": "logopedie",
+  "duplex": "duplexni sonografie",
+  "duplexni sonografie": "duplexni sonografie",
+  "neurofyziologie": "neurofyziologicke laboratore",
+
+  // Pomocné aliasy na konkrétní jednotky v budově 3
+  "ocni pohotovost": "ocni",
+  "ocni ambulance": "ocni",
+  "vseobecna ocni": "ocni",
+  "specialni ocni poradny": "ocni",
+
+  "orl pohotovost": "orl",
+  "specialni orl poradny": "orl",
+  "luzkove orl": "orl",
+
+  "urologie pohotovost": "urologie",
+  "urologie luzkova cast": "urologie"
 };
 
 // Mockup данные о зданиях

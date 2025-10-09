@@ -27,11 +27,14 @@ function getPoiIcon(type) {
     return icons[type] || icons['default'];
 }
 
-// Нормализация текста (удаление диакритики)
+// Нормализация текста (удаление диакритики и лишних пробелов)
 function normalize(text) {
-    return text.toLowerCase()
+    return (text || "")
+        .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
 }
 
 // Поиск с синонимами
@@ -40,22 +43,21 @@ function search(query) {
     
     const normalized = normalize(query);
     
+    // Проверяем, есть ли прямое совпадение с синонимом
+    const canonical = synonyma[normalized] || normalized;
+    
     return pracoviste.filter(p => {
         const nazevNorm = normalize(p.nazev);
         const nazevENNorm = normalize(p.nazevEN);
         
-        // Прямой поиск
-        if (nazevNorm.includes(normalized) || nazevENNorm.includes(normalized)) {
+        // Ищем каноническое ключевое слово в названиях
+        if (nazevNorm.includes(canonical) || nazevENNorm.includes(canonical)) {
             return true;
         }
         
-        // Поиск по синонимам
-        for (const [key, value] of Object.entries(synonyma)) {
-            if (normalize(key).includes(normalized)) {
-                if (nazevNorm.includes(normalize(value)) || nazevENNorm.includes(normalize(value))) {
-                    return true;
-                }
-            }
+        // Дополнительно ищем прямое совпадение с запросом (если синоним не найден)
+        if (nazevNorm.includes(normalized) || nazevENNorm.includes(normalized)) {
+            return true;
         }
         
         return false;
